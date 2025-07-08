@@ -4,18 +4,22 @@ import java.util.UUID;
 
 public class UUIDStringGenerator implements StringGenerator {
 
-  private boolean plainEnabled = false;
+  private final boolean stripHyphens;
+
+  public UUIDStringGenerator() {
+    this(false);
+  }
+
+  public UUIDStringGenerator(boolean stripHyphens) {
+    this.stripHyphens = stripHyphens;
+  }
 
   @Override
   public String generate() {
     String string = UUID.randomUUID().toString();
-    if (plainEnabled) {
+    if (stripHyphens) {
       string = string.replace("-", "");
     }
     return string;
-  }
-
-  public void setPlainEnabled(boolean plainEnabled) {
-    this.plainEnabled = plainEnabled;
   }
 }

@@ -18,8 +18,7 @@ class UUIDStringGeneratorTests {
 
   @Test
   void shouldGenerateSimpleString() {
-    UUIDStringGenerator generator = new UUIDStringGenerator();
-    generator.setPlainEnabled(true);
+    UUIDStringGenerator generator = new UUIDStringGenerator(true);
 
     String string = generator.generate();
 
