@@ -4,4 +4,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "maven-lib-gh-pages"
+rootProject.name = "github-packages-draft"
