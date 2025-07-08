@@ -1,3 +1,3 @@
-# Library hosted on GitHub Pages
+# Github Packages Draft
 
-This library is an experiment to be hosted on public GitHub Pages.
+Example repository on how to build maven library in GitHub Actions and host it in GitHub Packages.
