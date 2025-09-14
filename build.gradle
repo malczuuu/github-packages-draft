@@ -1,13 +1,18 @@
 plugins {
     id "java-library"
     id "maven-publish"
-    id "com.diffplug.spotless" version "7.0.3"
-    id "net.nemerosa.versioning" version "3.1.0"
+    id "com.diffplug.spotless" version "7.2.1"
 }
 
 group = "com.github.malczuuu"
-version = (versioning.info.tag ?: "${versioning.info.lastTag}-${versioning.info.build}") \
-            + (versioning.info.dirty ? "-dirty" : "")
+
+/**
+ * Conditional approach to versioning. If `-Pversion=...` is specified on the command line, it will be used as the
+ * version. Otherwise, the version is derived from the git tag and build number.
+ */
+if (version == null || version == "unspecified") {
+    version = Versioning.getVersion(rootProject.rootDir)
+}
 
 java {
     toolchain {
@@ -63,6 +68,12 @@ spotless {
 
         googleJavaFormat("1.28.0")
         lineEndings = LineEnding.UNIX
+    }
+}
+
+tasks.register("printVersion") {
+    doLast {
+        println "Project version: ${Versioning.getVersion(new File(rootProject.rootDir, ".."))}"
     }
 }
 
