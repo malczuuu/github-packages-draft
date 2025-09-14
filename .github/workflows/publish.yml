@@ -28,4 +28,4 @@ jobs:
         env:
           GPR_USER: ${{ github.actor }}
           GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
-        run: ./gradlew publish
+        run: ./gradlew publish -Pversion={{ github.ref_name }}
